@@ -49,13 +49,13 @@ moonbox.netty.server.port=7777
 
 ### 4、修改被测应用启动脚本，添加参数
 例如：<br>
-java -javaagent:/moonbox/moonbox-proxy-1.0.0-SNAPSHOT.jar -jar -XX:+StartAttachListener -DsystemCode="base" -DsystemName="基础服务" -DappName="gh-util-base-proxy" -Denv=sit
+java -XX:+StartAttachListener -javaagent:/moonbox/moonbox-proxy-1.0.0-SNAPSHOT.jar -jar  -DsystemCode="base" -DsystemName="基础服务" -DappName="gh-util-base-proxy" -Denv=sit demo.jar
 
 参数说明：<br>
 -javaagent参数表示启动字节码增强<br>
 -XX:+StartAttachListener参数表示开启attach机制，在jvm启动时进行字节码增强<br>
 -DsystemCode参数表示系统编码，在moonbox中用于区分不同的系统<br>
--DsystemName参数表示系统名称，在moonbox中用于区分不同的系统<br>  
+-DsystemName参数表示系统名称，在moonbox中用于区分不同的系统<br>
 -DappName参数表示应用名称，在moonbox中用于区分不同的应用<br>
 -Denv参数表示应用环境，在moonbox中用于区分不同的应用环境<br>
 ![img.png](./docs/images/k8s3.jpg)
