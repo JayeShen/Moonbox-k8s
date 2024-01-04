@@ -135,7 +135,6 @@ public class AgentUtil {
         //start-remote-agent脚本来拉起来agent
         String startAgentCommand = " && sh ~/.sandbox-module/bin/start-remote-agent.sh " + appName +" "+ taskConfig;
 //        return downLoadCommand + rmDir + unzipCommand + dos2unixSh + rmAgentZip + startAgentCommand;
-//        return " bash /weblogic/.sandbox-module/bin/start-remote-agent.sh " + appName +" "+ taskConfig;
         return appName +" "+ taskConfig;
     }
 
