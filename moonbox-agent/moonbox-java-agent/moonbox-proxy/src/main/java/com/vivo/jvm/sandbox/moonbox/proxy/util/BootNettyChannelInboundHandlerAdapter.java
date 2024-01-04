@@ -41,7 +41,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
             return;
         }
 
-        logger.info("访问moonbox服务端，入参" + msg.toString());
+        logger.info("访问moonbox服务端，入参" + msg);
         String pre = "bash ~/.sandbox-module/bin/start-remote-agent.sh";
         String command=pre+" "+msg;
         logger.info("command = " + command);

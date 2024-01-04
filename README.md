@@ -62,13 +62,15 @@ java -XX:+StartAttachListener -javaagent:/moonbox/moonbox-proxy-1.0.0-SNAPSHOT.j
 ### 5、启动moonbox-server
 ![img.png](./docs/images/k8s2.jpg)
 ### 6、启动被测应用
+我不想在镜像中安装太多软件，例如curl、dos2unix，或者有的项目组在公司没有操作基础镜像的权限，所以在moonbox-agent中只运行这一段命令：sh ~/.sandbox-module/bin/start-remote-agent.sh " + appName +" "+ taskConfig
+![img.png](./docs/images/k8s7.jpg)
 将moonbox启动所需文件和文件夹直接打包在docker镜像的中（必须是根目录），或者通过k8s的configmap挂载到容器中<br>
 具体包括:<br>
-文件夹：.sandbox-module/、、sandbox/，文件.sandbox.token
+文件夹：.sandbox-module/、、sandbox/，文件.sandbox.token<br>
 ![img.png](./docs/images/k8s6.jpg)
-moonbox-agent只会运行这一段命令：sh ~/.sandbox-module/bin/start-remote-agent.sh " + appName +" "+ taskConfig
+
+有下面日志就表示moonbox-agent启动成功，其日志路径和日志级别可以在log4j2.xml中配置
 ![img.png](./docs/images/k8s1.jpg)
-有这个日志就表示moonbox-agent启动成功，其日志路径和日志级别可以在log4j2.xml中配置
 
 
 
