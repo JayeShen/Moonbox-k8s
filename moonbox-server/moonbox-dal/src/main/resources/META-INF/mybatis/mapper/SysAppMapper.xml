@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vivo.internet.moonbox.dal.mapper.SysAppMapper">
+  <resultMap id="BaseResultMap" type="com.vivo.internet.moonbox.dal.entity.SysApp">
+    <!--@mbg.generated-->
+    <!--@Table sys_app-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="system_code" jdbcType="VARCHAR" property="systemCode" />
+    <result column="system_name" jdbcType="VARCHAR" property="systemName" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="channel_id" jdbcType="VARCHAR" property="channelId" />
+    <result column="last_heartbeat_time" jdbcType="TIMESTAMP" property="lastHeartbeatTime" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="app_env" jdbcType="VARCHAR" property="appEnv" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="online_state" jdbcType="INTEGER" property="onlineState" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, system_code, system_name, app_name, channel_id, last_heartbeat_time, ip, remark, 
+    creator, app_env, create_time, update_time, online_state
+  </sql>
+  <select id="selectByExample" parameterType="com.vivo.internet.moonbox.dal.entity.SysAppExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_app
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_app
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sys_app
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vivo.internet.moonbox.dal.entity.SysAppExample">
+    <!--@mbg.generated-->
+    delete from sys_app
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vivo.internet.moonbox.dal.entity.SysApp">
+    <!--@mbg.generated-->
+    insert into sys_app (id, system_code, system_name, 
+      app_name, channel_id, last_heartbeat_time, 
+      ip, remark, creator, 
+      app_env, create_time, update_time, 
+      online_state)
+    values (#{id,jdbcType=BIGINT}, #{systemCode,jdbcType=VARCHAR}, #{systemName,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=VARCHAR}, #{channelId,jdbcType=VARCHAR}, #{lastHeartbeatTime,jdbcType=TIMESTAMP}, 
+      #{ip,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{appEnv,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{onlineState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vivo.internet.moonbox.dal.entity.SysApp">
+    <!--@mbg.generated-->
+    insert into sys_app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="systemCode != null">
+        system_code,
+      </if>
+      <if test="systemName != null">
+        system_name,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="channelId != null">
+        channel_id,
+      </if>
+      <if test="lastHeartbeatTime != null">
+        last_heartbeat_time,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="appEnv != null">
+        app_env,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="onlineState != null">
+        online_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="systemCode != null">
+        #{systemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="systemName != null">
+        #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null">
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastHeartbeatTime != null">
+        #{lastHeartbeatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="appEnv != null">
+        #{appEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="onlineState != null">
+        #{onlineState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vivo.internet.moonbox.dal.entity.SysAppExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from sys_app
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update sys_app
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.systemCode != null">
+        system_code = #{record.systemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.systemName != null">
+        system_name = #{record.systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appName != null">
+        app_name = #{record.appName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelId != null">
+        channel_id = #{record.channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastHeartbeatTime != null">
+        last_heartbeat_time = #{record.lastHeartbeatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appEnv != null">
+        app_env = #{record.appEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlineState != null">
+        online_state = #{record.onlineState,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update sys_app
+    set id = #{record.id,jdbcType=BIGINT},
+      system_code = #{record.systemCode,jdbcType=VARCHAR},
+      system_name = #{record.systemName,jdbcType=VARCHAR},
+      app_name = #{record.appName,jdbcType=VARCHAR},
+      channel_id = #{record.channelId,jdbcType=VARCHAR},
+      last_heartbeat_time = #{record.lastHeartbeatTime,jdbcType=TIMESTAMP},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      app_env = #{record.appEnv,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      online_state = #{record.onlineState,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vivo.internet.moonbox.dal.entity.SysApp">
+    <!--@mbg.generated-->
+    update sys_app
+    <set>
+      <if test="systemCode != null">
+        system_code = #{systemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="systemName != null">
+        system_name = #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null">
+        channel_id = #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastHeartbeatTime != null">
+        last_heartbeat_time = #{lastHeartbeatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="appEnv != null">
+        app_env = #{appEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="onlineState != null">
+        online_state = #{onlineState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vivo.internet.moonbox.dal.entity.SysApp">
+    <!--@mbg.generated-->
+    update sys_app
+    set system_code = #{systemCode,jdbcType=VARCHAR},
+      system_name = #{systemName,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=VARCHAR},
+      last_heartbeat_time = #{lastHeartbeatTime,jdbcType=TIMESTAMP},
+      ip = #{ip,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      app_env = #{appEnv,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      online_state = #{onlineState,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
