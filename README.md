@@ -7,6 +7,7 @@ moonbox-agent需要以pre方式agent到被测应用，在pod中通过netty控制
 ![img.png](./docs/images/k8s4.jpg)
 ## 步骤
 ### 1、数据库新增服务管理表
+mysql5.6
 ```sql
 create table sys_app
 (
@@ -26,6 +27,27 @@ create table sys_app
     online_state        int(2)                                  null comment '数据删除状态,1在线，0为离线',
     constraint idx_channel_id
         unique (channel_id)
+);
+```
+mysql5.7
+```sql
+CREATE TABLE sys_app
+(
+    id                  bigint NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+    system_code         varchar(128) COMMENT '系统编码',
+    system_name         varchar(128) COMMENT '系统名称',
+    app_name            varchar(128) NOT NULL COMMENT '项目名',
+    channel_id          varchar(128) COMMENT 'netty管道id',
+    last_heartbeat_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后上报时间',
+    ip                  varchar(128) COMMENT '机器ip',
+    remark              varchar(255) COMMENT '补充字段',
+    creator             varchar(128) COMMENT '创建人',
+    app_env             varchar(128) COMMENT '环境',
+    create_time         timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time         timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    online_state        int(2) COMMENT '数据删除状态,1在线，0为离线',
+    PRIMARY KEY (id),
+    CONSTRAINT idx_channel_id UNIQUE (channel_id)
 );
 ```
 ### 2、moonbox-server端开启一个netty服务
